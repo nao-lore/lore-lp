@@ -3,8 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lore - AI conversations that carry over. Automatically.</title>
-<meta name="description" content="Paste your AI conversation. Lore carries over context, tasks, and decisions to your next session — automatically. No more starting from scratch.">
+<link rel="canonical" href="https://lore-app.vercel.app/lp/">
+<title>Lore - Structured context for every AI session</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="Your AI doesn't need to remember everything. It needs to know where you are. Lore turns AI conversations into structured project context — status, decisions, next actions.">
+<!-- OGP -->
+<meta property="og:title" content="Lore — Structured context for every AI session">
+<meta property="og:description" content="Your AI doesn't need to remember everything. It needs to know where you are. Lore turns AI conversations into structured project context — status, decisions, next actions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lore-app.vercel.app/lp/">
+<meta property="og:image" content="https://lore-app.vercel.app/og-image.png">
+<meta property="og:site_name" content="Lore">
+<meta property="og:locale" content="en_US">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lore — Structured context for every AI session">
+<meta name="twitter:description" content="Your AI doesn't need to remember everything. It needs to know where you are. Lore turns AI conversations into structured project context — status, decisions, next actions.">
+<meta name="twitter:image" content="https://lore-app.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Lore",
+  "url": "https://lore-app.vercel.app",
+  "description": "Your AI doesn't need to remember everything. It needs to know where you are. Lore turns AI conversations into structured project context.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -65,14 +98,6 @@ body {
 .hero-badge { display: inline-block; font-size: 13px; color: var(--accent-text); background: var(--bg); border: 1px solid var(--accent-border); border-radius: 100px; padding: 6px 18px; margin-bottom: 32px; }
 .hero-title { font-size: 56px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.15; margin-bottom: 20px; background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 50%, var(--accent-active) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto 36px; line-height: 1.8; }
-
-/* ─── Waitlist ─── */
-.waitlist-form { display: flex; gap: 10px; justify-content: center; max-width: 480px; margin: 0 auto 16px; flex-wrap: wrap; }
-.waitlist-input { flex: 1; min-width: 240px; font-family: inherit; font-size: 16px; padding: 14px 20px; border: 2px solid var(--border); border-radius: 10px; outline: none; transition: border-color 0.2s; }
-.waitlist-input:focus { border-color: var(--accent); }
-.waitlist-input::placeholder { color: var(--text-faint); }
-.waitlist-note { font-size: 13px; color: var(--text-faint); text-align: center; }
-.waitlist-success { display: none; text-align: center; padding: 16px; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; color: var(--success); font-weight: 600; font-size: 15px; max-width: 480px; margin: 0 auto; }
 
 /* ─── Screenshot placeholder ─── */
 .screenshot-wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
@@ -181,8 +206,6 @@ body {
   .trust-grid { grid-template-columns: 1fr; }
   .final-cta-title { font-size: 26px; }
   .story-quote { font-size: 15px; padding: 32px 0; }
-  .waitlist-form { flex-direction: column; padding: 0 20px; }
-  .waitlist-input { min-width: unset; }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
   .usecases-grid { grid-template-columns: repeat(2, 1fr); }
@@ -200,7 +223,7 @@ body {
       <a href="#how" data-en="How it works" data-ja="使い方">How it works</a>
       <a href="#usecases" data-en="Use cases" data-ja="活用例">Use cases</a>
       <a href="javascript:void(0)" class="lang-btn" id="lang-toggle">JA</a>
-      <a href="#waitlist" class="nav-cta" data-en="Join Waitlist" data-ja="ウェイトリスト登録">Join Waitlist</a>
+      <a href="https://lore-app.vercel.app" class="nav-cta" data-en="Try Free" data-ja="無料で試す">Try Free</a>
     </div>
   </div>
 </nav>
@@ -209,20 +232,23 @@ body {
 <section class="hero">
   <div class="container">
     <div class="fade-in">
-      <span class="hero-badge" data-en="Now accepting early access signups" data-ja="アーリーアクセス登録受付中">Now accepting early access signups</span>
-      <h1 class="hero-title" data-en="Your AI conversations|finally carry over." data-ja="AIとの会話が、|ようやく繋がる。">Your AI conversations<br>finally carry over.</h1>
-      <p class="hero-sub" data-en="Paste any AI conversation. Lore extracts the context — status, tasks, decisions, risks — so your next session starts where the last one ended. Not from zero." data-ja="AIとの会話を貼るだけ。Loreが文脈を抽出——状況・タスク・決定・リスク——次のセッションは前回の続きから始まる。ゼロからじゃない。">Paste any AI conversation. Lore extracts the context &mdash; status, tasks, decisions, risks &mdash; so your next session starts where the last one ended. Not from zero.</p>
+      <span class="hero-badge" data-en="Beta — No signup, no API key needed" data-ja="ベータ版 — 登録不要、APIキーも不要">Beta — No signup, no API key needed</span>
+      <h1 class="hero-title" data-en="Your AI doesn't need|to remember everything.|It needs to know|where you are." data-ja="AIに記憶はいらない。|必要なのは、|今どこにいるかだ。">Your AI doesn't need<br>to remember everything.<br>It needs to know<br>where you are.</h1>
+      <p class="hero-sub" data-en="Paste any AI conversation. Lore turns it into a structured project snapshot — current status, key decisions, next actions, and risks — so you and your AI always know exactly where things stand." data-ja="AIとの会話を貼るだけ。Loreがプロジェクトの構造化スナップショットに変換する——現在の状況、決定事項、次のアクション、リスク——あなたもAIも、常にプロジェクトの現在地を把握できる。">Paste any AI conversation. Lore turns it into a structured project snapshot &mdash; current status, key decisions, next actions, and risks &mdash; so you and your AI always know exactly where things stand.</p>
 
-      <!-- Waitlist form -->
-      <form class="waitlist-form" id="waitlist-form">
-        <input type="email" class="waitlist-input" placeholder="you@example.com" required data-en-placeholder="you@example.com" data-ja-placeholder="メールアドレス">
-        <button type="submit" class="btn btn-primary" data-en="Join Waitlist" data-ja="登録する">Join Waitlist</button>
-      </form>
-      <p class="waitlist-note" id="waitlist-note" data-en="Free early access. No spam. Unsubscribe anytime." data-ja="無料のアーリーアクセス。スパムなし。いつでも解除可。">Free early access. No spam. Unsubscribe anytime.</p>
-      <div class="waitlist-success" id="waitlist-success" data-en="You're on the list! We'll notify you when Lore is ready." data-ja="登録完了！Loreの準備ができたらお知らせします。">You're on the list! We'll notify you when Lore is ready.</div>
+      <!-- CTA buttons -->
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://lore-app.vercel.app" class="btn btn-primary" data-en="Try Lore Free" data-ja="無料で試す">Try Lore Free</a>
+        <a href="https://github.com/nao-lore/lore-app" class="btn btn-outline" data-en="View on GitHub" data-ja="GitHubで見る">View on GitHub</a>
+      </div>
     </div>
 
-    <!-- TODO: Add app screenshot when available -->
+    <!-- App screenshot -->
+    <div class="screenshot-wrap" style="margin-top: 48px;">
+      <div class="screenshot-placeholder">
+        <img src="images/hero-screenshot.png" alt="Lore — Handoff detail view showing structured session context, resume checklist, and current status">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -235,22 +261,22 @@ body {
       <div class="compare-col compare-before">
         <div class="compare-label" data-en="Without Lore" data-ja="Loreなし">Without Lore</div>
         <ul class="compare-list">
-          <li data-en="Scroll through 200 messages to find what you decided" data-ja="200件のメッセージを遡って決定事項を探す">Scroll through 200 messages to find what you decided</li>
-          <li data-en="Re-explain all context to every new AI session" data-ja="新しいAIセッションのたびに背景を一から説明">Re-explain all context to every new AI session</li>
-          <li data-en="Manually copy tasks into a separate app" data-ja="タスクを別のアプリに手動でコピー">Manually copy tasks into a separate app</li>
-          <li data-en="Forget what you completed last week" data-ja="先週何を完了したか忘れる">Forget what you completed last week</li>
-          <li data-en="30 minutes wasted every morning catching up" data-ja="毎朝30分を「思い出す」作業に浪費">30 minutes wasted every morning catching up</li>
+          <li data-en="Re-explain your project's background to every new AI session" data-ja="毎回AIにプロジェクトの背景を説明し直す">Re-explain your project's background to every new AI session</li>
+          <li data-en="Can't remember what you decided last week or why" data-ja="先週何を決めたか、なぜそう決めたか思い出せない">Can't remember what you decided last week or why</li>
+          <li data-en="Tasks buried inside long conversations, impossible to find" data-ja="タスクが会話の中に埋もれて見失う">Tasks buried inside long conversations, impossible to find</li>
+          <li data-en="The big picture only exists in your head" data-ja="プロジェクトの全体像が頭の中にしかない">The big picture only exists in your head</li>
+          <li data-en="30 minutes wasted every morning just trying to remember where you left off" data-ja="毎朝30分を「どこまでやったっけ」に浪費">30 minutes wasted every morning just trying to remember where you left off</li>
         </ul>
       </div>
       <div class="compare-arrow"><span>&rarr;</span></div>
       <div class="compare-col compare-after">
         <div class="compare-label" data-en="With Lore" data-ja="Loreあり">With Lore</div>
         <ul class="compare-list">
-          <li data-en="Status, tasks, risks — all structured automatically" data-ja="状況・タスク・リスクが自動で構造化される">Status, tasks, risks &mdash; all structured automatically</li>
-          <li data-en="Paste the handoff into the next AI → instant context" data-ja="引き継ぎを次のAIに貼る → 即座に文脈共有">Paste the handoff into the next AI &rarr; instant context</li>
-          <li data-en="Tasks are already extracted. Just check them off" data-ja="タスクは抽出済み。チェックするだけ">Tasks are already extracted. Just check them off</li>
-          <li data-en="Complete history of everything you've done" data-ja="これまでの全作業履歴が自動で残る">Complete history of everything you've done</li>
-          <li data-en="Open Lore, see where you are, start working" data-ja="Loreを開く、状況を見る、すぐ作業開始">Open Lore, see where you are, start working</li>
+          <li data-en="Your AI instantly knows your project's current state" data-ja="AIが即座にプロジェクトの現在地を把握">Your AI instantly knows your project's current state</li>
+          <li data-en="Decisions and their rationale — structured and searchable" data-ja="決定事項・その理由が構造化されて残る">Decisions and their rationale &mdash; structured and searchable</li>
+          <li data-en="Next actions automatically extracted and organized" data-ja="次のアクションが自動で抽出・整理される">Next actions automatically extracted and organized</li>
+          <li data-en="A project dashboard you can check anytime" data-ja="プロジェクトのダッシュボードがいつでも見える">A project dashboard you can check anytime</li>
+          <li data-en="Open Lore — instantly see where things stand" data-ja="Loreを開いた瞬間、状況がわかる">Open Lore &mdash; instantly see where things stand</li>
         </ul>
       </div>
     </div>
@@ -281,8 +307,8 @@ body {
 <!-- What you get -->
 <section class="section output-preview">
   <div class="container">
-    <h2 class="section-title fade-in" data-en="What Lore gives you" data-ja="Loreが出力するもの">What Lore gives you</h2>
-    <p class="section-subtitle fade-in" data-en="From one paste, you get a full project snapshot." data-ja="1回の貼り付けで、プロジェクトの全体像が手に入る。">From one paste, you get a full project snapshot.</p>
+    <h2 class="section-title fade-in" data-en="Your project, structured" data-ja="プロジェクトを構造化する">Your project, structured</h2>
+    <p class="section-subtitle fade-in" data-en="From one paste, Lore builds a complete project snapshot." data-ja="1回の貼り付けで、Loreがプロジェクトの全体像を構築する。">From one paste, Lore builds a complete project snapshot.</p>
     <div class="output-grid fade-in">
       <div class="output-card">
         <span class="output-icon">&#x1F4CD;</span>
@@ -312,22 +338,22 @@ body {
 <section id="usecases" class="section">
   <div class="container">
     <h2 class="section-title fade-in" data-en="Who is Lore for?" data-ja="Loreは誰のため？">Who is Lore for?</h2>
-    <p class="section-subtitle fade-in" data-en="Anyone who works with AI and wants to stop losing context." data-ja="AIで仕事する全ての人。もうコンテキストを失わない。">Anyone who works with AI and wants to stop losing context.</p>
+    <p class="section-subtitle fade-in" data-en="Anyone running ongoing projects with AI." data-ja="AIで継続的なプロジェクトを進めている全ての人。">Anyone running ongoing projects with AI.</p>
     <div class="usecases-grid fade-in">
       <div class="usecase-card">
-        <span class="usecase-emoji">&#x1F468;&#x200D;&#x1F4BB;</span>
-        <div class="usecase-title" data-en="Solo developers" data-ja="個人開発者">Solo developers</div>
-        <div class="usecase-desc" data-en="Track what you built, what broke, what's next. Across multiple AI sessions and projects." data-ja="何を作り、何が壊れ、次に何をするか。複数のAIセッションとプロジェクトにまたがって追跡。">Track what you built, what broke, what's next. Across multiple AI sessions and projects.</div>
+        <span class="usecase-emoji">&#x1F6E0;&#xFE0F;</span>
+        <div class="usecase-title" data-en="Building a product with AI" data-ja="AIでプロダクトを作っている人">Building a product with AI</div>
+        <div class="usecase-desc" data-en="Track what you built, what's broken, what's next — across sessions, across days, across tools." data-ja="何を作り、何が壊れ、次に何をするか——セッション、日、ツールをまたいで追跡。">Track what you built, what's broken, what's next &mdash; across sessions, across days, across tools.</div>
       </div>
       <div class="usecase-card">
-        <span class="usecase-emoji">&#x1F3AF;</span>
-        <div class="usecase-title" data-en="Freelancers" data-ja="フリーランサー">Freelancers</div>
-        <div class="usecase-desc" data-en="Juggling multiple clients? Lore keeps each project's context separate and always up to date." data-ja="複数案件を掛け持ち？Loreがプロジェクトごとのコンテキストを分離・最新化。">Juggling multiple clients? Lore keeps each project's context separate and always up to date.</div>
+        <span class="usecase-emoji">&#x1F4C2;</span>
+        <div class="usecase-title" data-en="Running multiple AI projects" data-ja="複数のAIプロジェクトを回している人">Running multiple AI projects</div>
+        <div class="usecase-desc" data-en="Each project's status, decisions, and next actions — organized and always current." data-ja="プロジェクトごとの状況・決定事項・次のアクションが整理されて常に最新。">Each project's status, decisions, and next actions &mdash; organized and always current.</div>
       </div>
       <div class="usecase-card">
-        <span class="usecase-emoji">&#x1F680;</span>
-        <div class="usecase-title" data-en="AI power users" data-ja="AIヘビーユーザー">AI power users</div>
-        <div class="usecase-desc" data-en="If you use AI every day for real work, your conversations deserve to be more than disposable chat logs." data-ja="毎日AIで実務をしているなら、会話は使い捨てのチャットログ以上の価値がある。">If you use AI every day for real work, your conversations deserve to be more than disposable chat logs.</div>
+        <span class="usecase-emoji">&#x1F9ED;</span>
+        <div class="usecase-title" data-en="Making decisions with AI" data-ja="AIで戦略・意思決定をしている人">Making decisions with AI</div>
+        <div class="usecase-desc" data-en="Strategy, planning, analysis — your decisions and rationale are captured, not lost in chat history." data-ja="戦略・企画・分析——決定事項とその理由が記録され、チャット履歴に埋もれない。">Strategy, planning, analysis &mdash; your decisions and rationale are captured, not lost in chat history.</div>
       </div>
     </div>
   </div>
@@ -346,7 +372,7 @@ body {
       <div class="trust-card">
         <span class="trust-emoji">&#x26A1;</span>
         <div class="trust-title" data-en="Works in seconds" data-ja="数秒で完了">Works in seconds</div>
-        <div class="trust-desc" data-en="Paste a conversation, get results in seconds. No configuration, no learning curve." data-ja="会話を貼って、数秒で結果。設定不要、学習コストゼロ。">Paste a conversation, get results in seconds. No configuration, no learning curve.</div>
+        <div class="trust-desc" data-en="Paste a conversation, get results in seconds. No API key required, no configuration, no learning curve." data-ja="会話を貼って、数秒で結果。APIキー不要、設定不要、学習コストゼロ。">Paste a conversation, get results in seconds. No API key required, no configuration, no learning curve.</div>
       </div>
       <div class="trust-card">
         <span class="trust-emoji">&#x1F310;</span>
@@ -369,21 +395,23 @@ body {
 <!-- Final CTA -->
 <section id="waitlist" class="final-cta">
   <div class="container fade-in">
-    <div class="final-cta-title" data-en="Every AI session should|start where the last one ended." data-ja="すべてのAIセッションは、|前回の続きから始まるべきだ。">Every AI session should<br>start where the last one ended.</div>
-    <p class="final-cta-sub" data-en="Join the waitlist for early access." data-ja="アーリーアクセスのウェイトリストに登録。">Join the waitlist for early access.</p>
-    <form class="waitlist-form" id="waitlist-form-bottom">
-      <input type="email" class="waitlist-input" placeholder="you@example.com" required data-en-placeholder="you@example.com" data-ja-placeholder="メールアドレス">
-      <button type="submit" class="btn btn-primary" data-en="Join Waitlist" data-ja="登録する">Join Waitlist</button>
-    </form>
-    <p class="waitlist-note" data-en="Free early access. No spam. Unsubscribe anytime." data-ja="無料のアーリーアクセス。スパムなし。いつでも解除可。">Free early access. No spam. Unsubscribe anytime.</p>
-    <div class="waitlist-success" id="waitlist-success-bottom" data-en="You're on the list! We'll notify you when Lore is ready." data-ja="登録完了！Loreの準備ができたらお知らせします。">You're on the list! We'll notify you when Lore is ready.</div>
+    <div class="final-cta-title" data-en="See where you are.|Start where you left off." data-ja="今の状態を把握する。|前回の続きから始める。">See where you are.<br>Start where you left off.</div>
+    <p class="final-cta-sub" data-en="No signup required. No API key needed to try." data-ja="アカウント不要。デモモードでAPIキー不要。">No signup required. No API key needed to try.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://lore-app.vercel.app" class="btn btn-primary" data-en="Try Lore Free" data-ja="無料で試す">Try Lore Free</a>
+      <a href="https://github.com/nao-lore/lore-app" class="btn btn-outline" data-en="View on GitHub" data-ja="GitHubで見る">View on GitHub</a>
+    </div>
   </div>
 </section>
 
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-tagline">Lore &mdash; AI conversations that carry over</div>
+    <div class="footer-tagline">Lore &mdash; Structured context for every AI session</div>
+    <div style="margin-bottom: 8px; display: flex; gap: 16px; justify-content: center;">
+      <a href="/privacy.html" style="font-size: 13px; color: var(--text-faint); text-decoration: none;">Privacy Policy</a>
+      <a href="/terms.html" style="font-size: 13px; color: var(--text-faint); text-decoration: none;">Terms of Service</a>
+    </div>
     <div class="footer-copy">&copy; 2026 Lore. All rights reserved.</div>
   </div>
 </footer>
@@ -397,57 +425,6 @@ body {
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
-})();
-
-// Waitlist form handling
-(function() {
-  var SUPABASE_URL = 'https://ilhfaddwpdjbfwovklnx.supabase.co';
-  var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsaGZhZGR3cGRqYmZ3b3ZrbG54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMDI3NjAsImV4cCI6MjA4ODg3ODc2MH0.6a1u2EZcp2_WGiGUOSAtf-82WWYFPv-Rf45JMbCmy9s';
-
-  function showSuccess(formId, successId) {
-    var form = document.getElementById(formId);
-    var success = document.getElementById(successId);
-    if (form) {
-      form.style.display = 'none';
-      var note = form.nextElementSibling;
-      if (note && note.classList.contains('waitlist-note')) note.style.display = 'none';
-    }
-    if (success) success.style.display = 'block';
-  }
-
-  function handleSubmit(formId, successId) {
-    var form = document.getElementById(formId);
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var email = form.querySelector('input[type="email"]').value;
-      var btn = form.querySelector('button');
-      btn.disabled = true;
-      btn.textContent = '...';
-
-      fetch(SUPABASE_URL + '/rest/v1/waitlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON,
-          'Authorization': 'Bearer ' + SUPABASE_ANON,
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ email: email })
-      }).then(function(res) {
-        // 201 = created, 409 = duplicate (already registered)
-        showSuccess('waitlist-form', 'waitlist-success');
-        showSuccess('waitlist-form-bottom', 'waitlist-success-bottom');
-      }).catch(function() {
-        showSuccess('waitlist-form', 'waitlist-success');
-        showSuccess('waitlist-form-bottom', 'waitlist-success-bottom');
-      });
-    });
-  }
-
-  handleSubmit('waitlist-form', 'waitlist-success');
-  handleSubmit('waitlist-form-bottom', 'waitlist-success-bottom');
 })();
 
 // Language toggle (EN / JA)
