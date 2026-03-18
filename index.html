@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="canonical" href="https://lore-app.vercel.app/lp/">
+<link rel="canonical" href="/">
 <title>Lore - Structured context for every AI session</title>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -13,29 +13,28 @@
 <meta property="og:title" content="Lore — Structured context for every AI session">
 <meta property="og:description" content="Your AI doesn't need to remember everything. It needs to know where you are. Lore turns AI conversations into structured project context — status, decisions, next actions.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://lore-app.vercel.app/lp/">
-<meta property="og:image" content="https://lore-app.vercel.app/og-image.png">
+<meta property="og:url" content="/">
+<meta property="og:image" content="https://lore-app-r5dl.vercel.app/og-image.png">
 <meta property="og:site_name" content="Lore">
 <meta property="og:locale" content="en_US">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lore — Structured context for every AI session">
 <meta name="twitter:description" content="Your AI doesn't need to remember everything. It needs to know where you are. Lore turns AI conversations into structured project context — status, decisions, next actions.">
-<meta name="twitter:image" content="https://lore-app.vercel.app/og-image.png">
+<meta name="twitter:image" content="https://lore-app-r5dl.vercel.app/og-image.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Lore",
-  "url": "https://lore-app.vercel.app",
+  "url": "https://lore-app-r5dl.vercel.app",
   "description": "Your AI doesn't need to remember everything. It needs to know where you are. Lore turns AI conversations into structured project context.",
   "applicationCategory": "ProductivityApplication",
   "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
+  "offers": [
+    { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
+    { "@type": "Offer", "price": "9.99", "priceCurrency": "USD", "name": "Pro", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } }
+  ]
 }
 </script>
 <style>
@@ -182,6 +181,21 @@ body {
 .footer-tagline { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
 .footer-copy { font-size: 13px; color: var(--text-faint); }
 
+/* ─── Pricing ─── */
+.pricing { background: var(--bg-subtle); }
+.pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 700px; margin: 0 auto; }
+.pricing-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 28px; text-align: center; position: relative; transition: box-shadow 0.2s, border-color 0.2s; }
+.pricing-card:hover { box-shadow: var(--shadow-md); }
+.pricing-card.featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow-md); }
+.pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 100px; white-space: nowrap; }
+.pricing-plan { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.pricing-price { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 4px; }
+.pricing-price span { font-size: 16px; font-weight: 500; color: var(--text-muted); }
+.pricing-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+.pricing-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.pricing-features li { font-size: 14px; display: flex; align-items: flex-start; gap: 8px; }
+.pricing-features li::before { content: '\2713'; color: var(--success); font-weight: 700; flex-shrink: 0; }
+
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
   :root { --section-py: 72px; }
@@ -204,6 +218,7 @@ body {
   .output-grid { grid-template-columns: 1fr; max-width: 400px; }
   .usecases-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
   .final-cta-title { font-size: 26px; }
   .story-quote { font-size: 15px; padding: 32px 0; }
 }
@@ -222,8 +237,9 @@ body {
     <div class="nav-links">
       <a href="#how" data-en="How it works" data-ja="使い方">How it works</a>
       <a href="#usecases" data-en="Use cases" data-ja="活用例">Use cases</a>
+      <a href="#pricing" data-en="Pricing" data-ja="料金">Pricing</a>
       <a href="javascript:void(0)" class="lang-btn" id="lang-toggle">JA</a>
-      <a href="https://lore-app.vercel.app" class="nav-cta" data-en="Try Free" data-ja="無料で試す">Try Free</a>
+      <a href="https://lore-app-r5dl.vercel.app" class="nav-cta" data-en="Try Free" data-ja="無料で試す">Try Free</a>
     </div>
   </div>
 </nav>
@@ -238,7 +254,7 @@ body {
 
       <!-- CTA buttons -->
       <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-        <a href="https://lore-app.vercel.app" class="btn btn-primary" data-en="Try Lore Free" data-ja="無料で試す">Try Lore Free</a>
+        <a href="https://lore-app-r5dl.vercel.app" class="btn btn-primary" data-en="Try Lore Free" data-ja="無料で試す">Try Lore Free</a>
         <a href="https://github.com/nao-lore/lore-app" class="btn btn-outline" data-en="View on GitHub" data-ja="GitHubで見る">View on GitHub</a>
       </div>
     </div>
@@ -392,13 +408,48 @@ body {
   </div>
 </section>
 
+<!-- Pricing -->
+<section id="pricing" class="section pricing">
+  <div class="container">
+    <h2 class="section-title fade-in" data-en="Simple pricing" data-ja="シンプルな料金体系">Simple pricing</h2>
+    <p class="section-subtitle fade-in" data-en="Start free. Upgrade when you need more." data-ja="無料で始めて、必要なときにアップグレード。">Start free. Upgrade when you need more.</p>
+    <div class="pricing-grid fade-in">
+      <div class="pricing-card">
+        <div class="pricing-plan" data-en="Free" data-ja="Free">Free</div>
+        <div class="pricing-price">$0</div>
+        <div class="pricing-desc" data-en="Get started with the basics" data-ja="基本機能を無料で">Get started with the basics</div>
+        <ul class="pricing-features">
+          <li data-en="5 handoffs per day with built-in AI" data-ja="内蔵AIで1日5回のハンドオフ">5 handoffs per day with built-in AI</li>
+          <li data-en="Unlimited handoffs with your own API key" data-ja="自分のAPIキーで無制限">Unlimited handoffs with your own API key</li>
+          <li data-en="All structured outputs" data-ja="すべての構造化アウトプット">All structured outputs</li>
+          <li data-en="Local data storage" data-ja="ローカルデータ保存">Local data storage</li>
+        </ul>
+        <a href="https://lore-app-r5dl.vercel.app" class="btn btn-outline btn-sm" style="width: 100%; justify-content: center;" data-en="Try Free" data-ja="無料で試す">Try Free</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge" data-en="Most Popular" data-ja="人気">Most Popular</div>
+        <div class="pricing-plan" data-en="Pro" data-ja="Pro">Pro</div>
+        <div class="pricing-price">$9.99 <span data-en="/month" data-ja="/月">/month</span></div>
+        <div class="pricing-desc" data-en="For power users and teams" data-ja="ヘビーユーザー向け">For power users and teams</div>
+        <ul class="pricing-features">
+          <li data-en="Unlimited handoffs with built-in AI" data-ja="内蔵AIで無制限のハンドオフ">Unlimited handoffs with built-in AI</li>
+          <li data-en="Priority support" data-ja="優先サポート">Priority support</li>
+          <li data-en="Advanced analytics" data-ja="高度な分析機能">Advanced analytics</li>
+          <li data-en="Everything in Free" data-ja="Freeプランの全機能">Everything in Free</li>
+        </ul>
+        <a href="https://lore-app-r5dl.vercel.app" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center;" data-en="Get Pro" data-ja="Proを始める">Get Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Final CTA -->
 <section id="waitlist" class="final-cta">
   <div class="container fade-in">
     <div class="final-cta-title" data-en="See where you are.|Start where you left off." data-ja="今の状態を把握する。|前回の続きから始める。">See where you are.<br>Start where you left off.</div>
     <p class="final-cta-sub" data-en="No signup required. No API key needed to try." data-ja="アカウント不要。デモモードでAPIキー不要。">No signup required. No API key needed to try.</p>
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://lore-app.vercel.app" class="btn btn-primary" data-en="Try Lore Free" data-ja="無料で試す">Try Lore Free</a>
+      <a href="https://lore-app-r5dl.vercel.app" class="btn btn-primary" data-en="Try Lore Free" data-ja="無料で試す">Try Lore Free</a>
       <a href="https://github.com/nao-lore/lore-app" class="btn btn-outline" data-en="View on GitHub" data-ja="GitHubで見る">View on GitHub</a>
     </div>
   </div>
